@@ -1,0 +1,10 @@
+build:
+  cuda: "12.2"
+  gpu: true
+  system_packages:
+    - "git"
+  python_version: "3.10.12"
+  python_requirements: requirements.txt
+  run: 
+    - "git clone https://github.com/kohya-ss/sd-scripts.git"
+predict: "predict.py:Predictor"

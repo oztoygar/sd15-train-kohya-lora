@@ -3,8 +3,13 @@ build:
   gpu: true
   system_packages:
     - "git"
+    - "git-lfs"
   python_version: "3.10.12"
   python_requirements: requirements.txt
-  run: 
-    - "git clone https://github.com/kohya-ss/sd-scripts.git"
+  run:
+    - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
+    - "mkdir -p /src/models"
+    - "GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/digiplay/Photon_v1 /src/models/Photon_v1"
+    - "cd /src/models/Photon_v1 && git lfs install && git lfs pull --include=photon_v1.safetensors"
+
 predict: "predict.py:Predictor"
